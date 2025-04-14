@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>404 - Erreur fatale</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nosifer&display=swap');
+
+    body {
+      background: black;
+      color: red;
+      font-family: 'Nosifer', cursive;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    h1 {
+      font-size: 10vw;
+      margin-top: 20vh;
+      animation: glitch 1s infinite;
+    }
+
+    p {
+      font-size: 2vw;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
+
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-5px, 5px); }
+      40% { transform: translate(5px, -5px); }
+      60% { transform: translate(-5px, -5px); }
+      80% { transform: translate(5px, 5px); }
+      100% { transform: translate(0); }
+    }
+
+    #jumpscare {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('https://i.imgur.com/4NJlKqU.png') center center no-repeat;
+      background-size: cover;
+      opacity: 0;
+      z-index: 9999;
+      transition: opacity 0.3s;
+    }
+
+    #jumpscare.show {
+      opacity: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>404</h1>
+  <p>Cette page n'existe plus... mais quelque chose vous observe.</p>
+
+  <div id="jumpscare"></div>
+
+  <audio autoplay loop>
+    <source src="https://assets.mixkit.co/sfx/preview/mixkit-creepy-ambience-1155.mp3" type="audio/mpeg">
+  </audio>
+
+  <audio id="scream" src="https://www.soundjay.com/human/sounds/scream-01.mp3"></audio>
+
+  <script>
+    // Jumpscare au bout de 7 secondes
+    setTimeout(() => {
+      const js = document.getElementById('jumpscare');
+      const scream = document.getElementById('scream');
+      js.classList.add('show');
+      scream.play();
+
+      setTimeout(() => {
+        js.classList.remove('show');
+      }, 1000);
+    }, 7000);
+  </script>
+</body>
+</html>
